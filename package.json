@@ -1,0 +1,54 @@
+{
+  "name": "react-pe",
+  "version": "0.1.0",
+  "description": "Progressive enhancement for React websites",
+  "main": "dist/progressive-enhancement.js",
+  "scripts": {
+    "lint": "eslint . --ext js,ts,tsx && tsc -p . --noEmit",
+    "build": "rimraf dist && tsc -p tsconfig.build.json",
+    "test": "jest",
+    "dev": "webpack serve --mode=development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kenneth-gray/react-pe.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "author": "Kenneth Gray",
+  "bugs": {
+    "url": "https://github.com/kenneth-gray/react-pe/issues"
+  },
+  "homepage": "https://github.com/kenneth-gray/react-pe#readme",
+  "devDependencies": {
+    "@reach/accordion": "^0.16.1",
+    "@types/jest": "^27.0.1",
+    "@types/react-dom": "^17.0.9",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
+    "css-loader": "^6.2.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "html-webpack-plugin": "^5.3.2",
+    "jest": "^27.1.0",
+    "mini-css-extract-plugin": "^2.2.2",
+    "prettier": "^2.3.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.5",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.4.2",
+    "webpack": "^5.52.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.1.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.6 <18"
+  },
+  "keywords": [
+    "react"
+  ]
+}

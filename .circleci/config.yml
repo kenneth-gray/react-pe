@@ -1,0 +1,69 @@
+version: 2.1
+
+only-main: &only-main
+  filters:
+    branches:
+      only:
+        - main
+
+ignore-main: &ignore-main
+  filters:
+    branches:
+      ignore:
+        - main
+
+commands:
+  install:
+    description: 'Install dependencies'
+    steps:
+      - restore_cache:
+          keys:
+            - v1-deps-{{ checksum "package-lock.json" }}
+            - v1-deps-
+      - run: npm install --no-save --no-audit --no-fund
+      - save_cache:
+          key: v1-deps-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+
+executors:
+  node:
+    docker:
+      - image: circleci/node:14
+
+jobs:
+  test:
+    executor: node
+    steps:
+      - checkout
+      - install
+      - run:
+          name: Run linting
+          command: npm run lint
+      - run:
+          name: Run unit tests
+          command: npm test -- --runInBand
+
+  build:
+    executor: node
+    steps:
+      - checkout
+      - install
+      - run:
+          name: Build project
+          command: npm run build
+
+workflows:
+  pull_request:
+    jobs:
+      - test:
+          <<: *ignore-main
+
+  main:
+    jobs:
+      - test:
+          <<: *only-main
+      - build:
+          <<: *only-main
+          requires:
+            - test
