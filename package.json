@@ -7,7 +7,7 @@
     "lint": "eslint . --ext js,ts,tsx && tsc -p . --noEmit",
     "build": "rimraf dist && tsc -p tsconfig.build.json",
     "test": "jest",
-    "dev": "webpack serve --mode=development"
+    "dev": "concurrently --kill-others \"tsc -p tsconfig.build.json -w\" \"next dev example\""
   },
   "repository": {
     "type": "git",
@@ -27,28 +27,24 @@
     "@types/react-dom": "^17.0.9",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
-    "css-loader": "^6.2.0",
+    "concurrently": "^6.2.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "html-webpack-plugin": "^5.3.2",
     "jest": "^27.1.0",
-    "mini-css-extract-plugin": "^2.2.2",
+    "next": "^11.1.2",
     "prettier": "^2.3.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.5",
-    "ts-loader": "^9.2.5",
-    "typescript": "^4.4.2",
-    "webpack": "^5.52.0",
-    "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^4.1.0"
+    "typescript": "^4.4.2"
   },
   "peerDependencies": {
     "react": ">=16.8.6 <18"
   },
   "keywords": [
-    "react"
+    "react",
+    "progressive enhancement"
   ]
 }
