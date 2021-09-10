@@ -1,18 +1,11 @@
-import '@reach/accordion/styles.css';
-
-import React from 'react';
 import {
   Accordion,
   AccordionItem,
   AccordionButton,
   AccordionPanel,
 } from '@reach/accordion';
-
-import {
-  ProgressivelyEnhance,
-  ProgressiveEnhancementProvider,
-} from '../src/progressive-enhancement';
-import './index.css';
+import Head from 'next/head';
+import { ProgressivelyEnhance } from '../../dist/progressive-enhancement';
 
 const Heading = 'h2';
 
@@ -34,6 +27,17 @@ const info2 = (
     about even more things.
   </p>
 );
+
+function AccordionExample() {
+  return (
+    <>
+      <h1>Accordion example</h1>
+      <ProgressivelyEnhance enhancement={<WithJs />}>
+        <WithoutJs />
+      </ProgressivelyEnhance>
+    </>
+  );
+}
 
 function WithoutJs() {
   return (
@@ -65,15 +69,17 @@ function WithJs() {
   );
 }
 
-function App() {
+export default function Home() {
   return (
-    <ProgressiveEnhancementProvider>
-      <h1>Information</h1>
-      <ProgressivelyEnhance enhancement={<WithJs />}>
-        <WithoutJs />
-      </ProgressivelyEnhance>
-    </ProgressiveEnhancementProvider>
+    <div>
+      <Head>
+        <title>Accordion example</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main>
+        <AccordionExample />
+      </main>
+    </div>
   );
 }
-
-export default App;
